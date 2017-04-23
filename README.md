@@ -1,8 +1,8 @@
-### irc-client
+# irc-client
 
 Simple IRC (Internet Relay Chat) Client written in Python 2
 
-### usage
+## Usage
 
 To join any channel on Freenode, with selected username, simply run irc_client.py and put desired username as a first argument, followed by channel name (with following # or without):
 
@@ -19,7 +19,7 @@ or
 __Seems that passing channel name with following # break script, as Python treats # as the begining of the comment?__
 
 
-#### References
+## References
 
 https://en.wikipedia.org/wiki/Internet_Relay_Chat
 
