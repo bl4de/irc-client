@@ -4,7 +4,7 @@ Simple IRC (Internet Relay Chat) Client written in Python 2
 
 ## Usage
 
-To join any channel on Freenode, with selected username, simply run irc_client.py and put desired username as a first argument, followed by channel name (with following # or without):
+To join any channel (on Freenode) with selected username, simply run irc_client.py and put desired username as a first argument, followed by channel name (with following # or without):
 
 ```
 ./irc_client.py myusername channeltojoin
@@ -24,6 +24,18 @@ __Seems that passing channel name with following # break script, as Python treat
 This is how it looks right now (left console: irc_client.py, right console: irssi):
 
 ![Sample conversation](sample-talk.png)
+
+
+## Issues and further ideas/features
+
+- multiline messages not working (related to no reposnse from server when no other user post message)
+- output sometimes messed by server messages (like PING)
+- lack of UX - only simple one line messages can be sent :)
+- irc.freenode.net (server) and port 6667 hardcoded - but can be easily added as arguments
+- channel name has to be passed without leading ```#```
+
+- colorful output (TBD)
+
 
 ## References
 
