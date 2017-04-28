@@ -1,13 +1,12 @@
 #!/usr/bin/env python
+# by bl4de | github.com/bl4de | twitter.com/_bl4de | hackerone.com/bl4de
 import socket
 import sys
-import time
 
 
 def usage():
-    print "\n\nIRC simple Python client\n"
-    print "usage:\n"
-    print "./irc_client.py USERNAME CHANNEL\n\n"
+    print "IRC simple Python client | by bl4de | github.com/bl4de | twitter.com/_bl4de | hackerone.com/bl4de\n"
+    print "$ ./irc_client.py USERNAME CHANNEL\n"
     print "where: USERNAME - your username, CHANNEL - channel you'd like to join (eg. channelname or #channelname)"
 
 
