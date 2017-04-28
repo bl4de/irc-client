@@ -19,6 +19,12 @@ or
 __Seems that passing channel name with following # break script, as Python treats # as the begining of the comment?__
 
 
+## Sample conversation
+
+This is how it looks right now (left console: irc_client.py, right console: irssi):
+
+![Sample conversation](sample-talk.png)
+
 ## References
 
 https://en.wikipedia.org/wiki/Internet_Relay_Chat
