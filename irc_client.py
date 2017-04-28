@@ -68,10 +68,13 @@ if __name__ == "__main__":
         username = sys.argv[1]
         channel = channel(sys.argv[2])
 
+    cmd = ""
+    joined = False
+
     client = Client(username, channel, SERVER, PORT)
     client.connect()
 
-    while(1):
+    while(joined == False):
         resp = client.get_response()
         print resp.strip()
 
@@ -87,7 +90,16 @@ if __name__ == "__main__":
 
         # we've joined, say Hello! to everyone
         if "End of /NAMES list" in resp:
-            client.send_message_to_channel('Hello everyone!')
+            joined = True
 
-        # here's main loop - conversation on channel :)
+    # main loop
+    while(cmd != "exit"):
+        cmd = raw_input("[#{}] ".format(channel))
+        
+        if cmd == "exit":
+            client.send_cmd("QUIT", "Good bye!")
+
+        client.send_message_to_channel(cmd)
+        resp = client.get_response()
+        print resp.strip()
         
