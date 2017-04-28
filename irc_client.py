@@ -3,11 +3,6 @@ import socket
 import sys
 import time
 
-# some defaults
-username = ""
-SERVER = "irc.freenode.net"
-PORT = 6667
-
 
 def usage():
     print "\n\nIRC simple Python client\n"
@@ -17,18 +12,12 @@ def usage():
 
 
 def channel(channel):
-    """
-    ensure that channel name starts with #
-    """
     if channel.startswith("#") == False:
         return "#" + channel
     return channel
 
 
-class Client:
-    """
-    IRC CLient
-    """
+class IRCSimpleClient:
 
     def __init__(self, username, channel, server="irc.freenode.net", port=6667):
         self.username = username
@@ -45,7 +34,6 @@ class Client:
 
     def send_cmd(self, cmd, message):
         command = "{} {}\r\n".format(cmd, message)
-        print ">>> {}".format(command)
         self.conn.send(command)
 
     def send_message_to_channel(self, message):
@@ -60,7 +48,6 @@ class Client:
 
 
 if __name__ == "__main__":
-
     if len(sys.argv) != 3:
         usage()
         exit(0)
@@ -70,36 +57,40 @@ if __name__ == "__main__":
 
     cmd = ""
     joined = False
-
-    client = Client(username, channel, SERVER, PORT)
+    client = IRCSimpleClient(username, channel)
     client.connect()
 
     while(joined == False):
         resp = client.get_response()
         print resp.strip()
-
-        # time to introduce to the server:
         if "No Ident response" in resp:
             client.send_cmd("NICK", username)
             client.send_cmd(
                 "USER", "{} * * :{}".format(username, username))
 
         # we're accepted, now let's join the channel!
-        if ":{} MODE {} :+i".format(username, username) in resp:
+        if "376" in resp:
             client.join_channel()
 
-        # we've joined, say Hello! to everyone
-        if "End of /NAMES list" in resp:
+        # username already in use? try to use username with _
+        if "433" in resp:
+            username = "_" + username
+            client.send_cmd("NICK", username)
+            client.send_cmd(
+                "USER", "{} * * :{}".format(username, username))
+
+        # we've joined
+        if "366" in resp:
             joined = True
 
-    # main loop
-    while(cmd != "exit"):
-        cmd = raw_input("[#{}] ".format(channel))
-        
-        if cmd == "exit":
+    while(cmd != "/quit"):
+        cmd = raw_input("< {}> ".format(username)).strip()
+        if cmd == "/quit":
             client.send_cmd("QUIT", "Good bye!")
-
         client.send_message_to_channel(cmd)
+
         resp = client.get_response()
-        print resp.strip()
+        if resp:
+            msg = resp.strip().split(":")
+            print "< {}> {}".format(msg[1].split("!")[0], msg[2].strip())
         

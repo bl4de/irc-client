@@ -27,6 +27,9 @@ RFC 1459 (Internet Relay Chat Protocol)
 
 https://tools.ietf.org/html/rfc1459
 
+IRC server response codes reference
+
+https://www.alien.net.au/irc/irc2numerics.html
 
 RFC 2812 (Internet Relay Chat: Client Protocol):
 
