@@ -23,18 +23,18 @@ __Seems that passing channel name with following # break script, as Python treat
 
 https://en.wikipedia.org/wiki/Internet_Relay_Chat
 
-RFC 1459 (Internet Relay Chat Protocol)
+RFC 1459 (Internet Relay Chat Protocol)                                             
 https://tools.ietf.org/html/rfc1459
 
-IRC server response codes reference
+IRC server response codes reference                                                 
 https://www.alien.net.au/irc/irc2numerics.html
 
-RFC 2812 (Internet Relay Chat: Client Protocol):
+RFC 2812 (Internet Relay Chat: Client Protocol):                                
 https://tools.ietf.org/html/rfc2812
 
 Other resources:
 
-http://chi.cs.uchicago.edu/chirc/irc_examples.html
+http://chi.cs.uchicago.edu/chirc/irc_examples.html                                                  
 http://books.msspace.net/mirrorbooks/irchacks/059600687X/irchks-CHP-13-SECT-2.html
 
 
