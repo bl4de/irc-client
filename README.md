@@ -25,6 +25,16 @@ This is how it looks right now (left console: irc_client.py, right console: irss
 
 ![Sample conversation](sample-talk.png)
 
+## Compiled to .pyc
+
+I've added verison compiled to Python bytecode file (with .pyc extension). Compilation is done by command:
+
+```
+$ python -m compileall irc_client.py
+```
+
+It might be useful to get binary version instead of cource code.
+
 
 ## Issues and further ideas/features
 

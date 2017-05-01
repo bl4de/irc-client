@@ -78,6 +78,10 @@ if __name__ == "__main__":
             client.send_cmd(
                 "USER", "{} * * :{}".format(username, username))
 
+        # if PING send PONG with name of the server
+        if "PING" in resp:
+            client.send_cmd("PONG", ":" + resp.split(":")[1])
+
         # we've joined
         if "366" in resp:
             joined = True
