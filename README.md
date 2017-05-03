@@ -2,6 +2,12 @@
 
 Simple IRC (Internet Relay Chat) Client written in Python 2
 
+
+## Contributors
+
+Special thanks to Ilie Cebanu (https://github.com/NotQuiteMelvin) for Python 3 version.
+
+
 ## Usage
 
 To join any channel (on Freenode) with selected username, simply run irc_client.py and put desired username as a first argument, followed by channel name (with following # or without):
