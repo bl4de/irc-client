@@ -2,7 +2,7 @@
 # by bl4de | github.com/bl4de | twitter.com/_bl4de | hackerone.com/bl4de
 import socket
 import sys
-
+import threading
 
 def usage():
     print "IRC simple Python client | by bl4de | github.com/bl4de | twitter.com/_bl4de | hackerone.com/bl4de\n"
@@ -45,6 +45,11 @@ class IRCSimpleClient:
         channel = self.channel
         self.send_cmd(cmd, channel)
 
+    def print_response(self):
+        resp = self.get_response()
+        if resp:
+            msg = resp.strip().split(":")
+            print "\n< {}> {}".format(msg[1].split("!")[0], msg[2].strip())
 
 if __name__ == "__main__":
     if len(sys.argv) != 3:
@@ -85,15 +90,17 @@ if __name__ == "__main__":
         # we've joined
         if "366" in resp:
             joined = True
+            t = threading.Thread(target=client.print_response)
+            t.start()
 
     while(cmd != "/quit"):
         cmd = raw_input("< {}> ".format(username)).strip()
         if cmd == "/quit":
             client.send_cmd("QUIT", "Good bye!")
-        client.send_message_to_channel(cmd)
-
-        resp = client.get_response()
-        if resp:
-            msg = resp.strip().split(":")
-            print "< {}> {}".format(msg[1].split("!")[0], msg[2].strip())
+            exit(0)
+        if cmd and len(cmd) > 0:
+            client.send_message_to_channel(cmd)
+        
+        t = threading.Thread(target=client.print_response)
+        t.start()
         
