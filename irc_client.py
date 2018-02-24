@@ -15,6 +15,9 @@ def channel(channel):
         return "#" + channel
     return channel
 
+def quit():
+    client.send_cmd("QUIT", "Good bye!")
+    exit(0)
 
 class IRCSimpleClient:
 
@@ -96,8 +99,7 @@ if __name__ == "__main__":
     while(cmd != "/quit"):
         cmd = raw_input("< {}> ".format(username)).strip()
         if cmd == "/quit":
-            client.send_cmd("QUIT", "Good bye!")
-            exit(0)
+            quit()
         if cmd and len(cmd) > 0:
             client.send_message_to_channel(cmd)
         
