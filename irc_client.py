@@ -17,6 +17,7 @@ def channel(channel):
 
 def quit():
     client.send_cmd("QUIT", "Good bye!")
+    print "Quitting ..."
     exit(0)
 
 class IRCSimpleClient:
@@ -95,13 +96,15 @@ if __name__ == "__main__":
             joined = True
             t = threading.Thread(target=client.print_response)
             t.start()
-
-    while(cmd != "/quit"):
-        cmd = raw_input("< {}> ".format(username)).strip()
-        if cmd == "/quit":
-            quit()
-        if cmd and len(cmd) > 0:
-            client.send_message_to_channel(cmd)
+    try:
+        while(cmd != "/quit"):
+            cmd = raw_input("< {}> ".format(username)).strip()
+            if cmd == "/quit":
+                quit()
+            if cmd and len(cmd) > 0:
+                client.send_message_to_channel(cmd)
+    except KeyboardInterrupt:
+        quit()
         
         t = threading.Thread(target=client.print_response)
         t.start()
