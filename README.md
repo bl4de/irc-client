@@ -19,11 +19,8 @@ To join any channel (on Freenode) with selected username, simply run irc_client.
 or
 
 ```
-./irc_client.py myusername #channeltojoin   // actually not working :)
+./irc_client.py myusername '#channeltojoin'
 ```
-
-__Seems that passing channel name with following # break script, as Python treats # as the begining of the comment?__
-
 
 ## Sample conversation
 
